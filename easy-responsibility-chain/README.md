@@ -18,10 +18,15 @@
 
 ##### 属性描述
 groupName：责任链组名
+
 name：责任链名称
+
 desc：描述
+
 order：责任链节点执行顺序，不可重复
+
 isReturn：是为了判断当前方法是否有返回布尔值，如果返回的为true则继续执行，false则终止整个链
+
 isPrintTime：这个为了对节点进行性能监控，可以打印出节点的执行情况， 比如这样
 ```
 StopWatch '': running time = 386691 ns
@@ -52,8 +57,8 @@ ns         %     Task name
 ##### 责任链加载执行流程图
 描述：在spring 启动加载bean进行初始化的时候，spring会执行后置处理中的postProcessAfterInitialization，这样就可以对bean的方法通过反射进行判断是否含有ResponsibilityChainMethod注解，获取到方法上的注解进行解析，组装成链加载到内存中，等待调用。
 
-<iframe id="embed_dom" name="embed_dom" frameborder="0" style="display:block;width:525px; height:245px;" src="https://www.processon.com/embed/60015a3b7d9c080e58d6c7d5"></iframe>
+![责任链加载执行流程图](http://assets.processon.com/chart_image/60015a3b7d9c080e58d6c7db.png)
 
 ##### 责任链调用执行流程
 描述： 其实使用很简单只需要注入ResponsibilityChainProcessor并且调用handle(demoBaseContext, BusinessDemo.GROUP_NAME)就可以执行了。通过对每个节点的判断决定是否执行下一个节点，直到所有节点被直接完。
-<iframe id="embed_dom" name="embed_dom" frameborder="0" style="display:block;width:525px; height:245px;" src="https://www.processon.com/embed/6001600107912914e75e7a2a"></iframe>
+![责任链调用执行流程](http://assets.processon.com/chart_image/6001600107912914e75e7a2d.png)
